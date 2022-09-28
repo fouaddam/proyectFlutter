@@ -6,6 +6,7 @@ class RF_Text extends StatelessWidget{
   TextEditingController inputController=TextEditingController();
   final String label;
   final String title;
+  final bool isActive;
 
 
     String getText(){
@@ -14,13 +15,14 @@ class RF_Text extends StatelessWidget{
 
 
 
-  RF_Text({Key? key, this.label="",  this.title=""}):super(key: key);
+  RF_Text({Key? key, this.label="",  this.title="", this.isActive=false}):super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return TextFormField(
       controller: inputController,
+      obscureText: isActive,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
         borderSide:

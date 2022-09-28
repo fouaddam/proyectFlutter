@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,27 @@ class Login_View extends StatefulWidget{
 }
 
 class _Login_ViewState extends State<Login_View> {
+
+         RF_Text inputEmail=  RF_Text(label: "Email",);
+         RF_Text inputPassword=RF_Text(label: "Password",isActive: true);
+
+         Login() async {
+           try {
+             final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                 email: inputEmail.getText(),
+                 password: inputPassword.getText()
+             );
+           } on FirebaseAuthException catch (e) {
+             if (e.code == 'user-not-found') {
+               print('No user found for that email.');
+             } else if (e.code == 'wrong-password') {
+               print('Wrong password provided for that user.');
+             }
+           }
+
+         }
+
+
 
   
   @override
@@ -57,9 +79,9 @@ class _Login_ViewState extends State<Login_View> {
                           ),
                         ),
                         SizedBox(height: 20,),
-                        RF_Text(label: "Email",),
+                        inputEmail,
                         SizedBox(height: 20,),
-                        RF_Text(label: "Password",),
+                        inputPassword,
                         SizedBox(height: 10,),
                         OutlinedButton(
                           style: OutlinedButton.styleFrom(

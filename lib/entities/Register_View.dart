@@ -18,8 +18,8 @@ class _Register_ViewState extends State<Register_View> {
 
 
  final RF_Text inputEmail=RF_Text(label: "Email");
- final RF_Text inputPassword=RF_Text(label: "Pasword ");
- final  RF_Text inputRipPassword=RF_Text(label: "Repite Pasword ");
+ final RF_Text inputPassword=RF_Text(label: "Pasword ",isActive: true,);
+ final  RF_Text inputRipPassword=RF_Text(label: "Repite Pasword ",isActive:true);
 
 
   void Verification(String password) async{
