@@ -17,12 +17,13 @@ class _Login_ViewState extends State<Login_View> {
          RF_Text inputEmail=  RF_Text(label: "Email",);
          RF_Text inputPassword=RF_Text(label: "Password",isActive: true);
 
-         Login() async {
+         Login(BuildContext context) async {
            try {
              final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
                  email: inputEmail.getText(),
                  password: inputPassword.getText()
              );
+            Navigator.of(context).popAndPushNamed('/Home');
            } on FirebaseAuthException catch (e) {
              if (e.code == 'user-not-found') {
                print('No user found for that email.');
@@ -95,7 +96,7 @@ class _Login_ViewState extends State<Login_View> {
                           ),
 
                           onPressed: () {
-                            // Respond to button press
+                            Login(context);
                           },
                           child: Text("Sing In",style: TextStyle(fontSize: 30)),
 
