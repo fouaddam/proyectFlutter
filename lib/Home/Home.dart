@@ -6,6 +6,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../fb_objects/Profil.dart';
+
 
 class Home extends StatefulWidget{
 
@@ -24,7 +26,17 @@ class _HomeState extends State<Home> {
 
   void getProfile() async {
 
-
+    final ref = db.collection("/Profiles").doc(FirebaseAuth.instance.currentUser?.uid).withConverter(
+      fromFirestore: Profil.fromFirestore,
+      toFirestore: (Profil profil, _) => profil.toFirestore(),
+    );
+    final docSnap = await ref.get();
+    final profil = docSnap.data(); // Convert to City object
+    if (profil != null) {
+      print(profil);
+    } else {
+      print("No such document.");
+    }
 
 
 
