@@ -23,7 +23,7 @@ class _Login_ViewState extends State<Login_View> {
                  email: inputEmail.getText(),
                  password: inputPassword.getText()
              );
-            Navigator.of(context).popAndPushNamed('/Home');
+            Navigator.of(context).popAndPushNamed('/onBoarding');
            } on FirebaseAuthException catch (e) {
              if (e.code == 'user-not-found') {
                print('No user found for that email.');
