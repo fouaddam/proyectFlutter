@@ -21,7 +21,7 @@ class Home extends StatefulWidget{
 class _HomeState extends State<Home> {
 
   FirebaseFirestore db=FirebaseFirestore.instance;
-   String nombre="bien venido a la app";
+   String sNombre="bienvenido a la app";
 
 
   void getProfile() async {
@@ -31,9 +31,13 @@ class _HomeState extends State<Home> {
       toFirestore: (Profil profil, _) => profil.toFirestore(),
     );
     final docSnap = await ref.get();
-    final profil = docSnap.data(); // Convert to City object
-    if (profil != null) {
-      print(profil);
+    final profilUser = docSnap.data(); // Convert to City object
+    if (profilUser != null) {
+      print(profilUser);
+
+      setState(() {
+        sNombre=profilUser.name!;
+      });
     } else {
       print("No such document.");
     }
@@ -64,7 +68,7 @@ class _HomeState extends State<Home> {
 
         child: Column(
           children: [
-            Text("----------------__-------"),
+            Text(sNombre),
             OutlinedButton(
               style: OutlinedButton.styleFrom(
                 backgroundColor: Colors.purple,
