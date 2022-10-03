@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:proyectoflutter/custom_view/fbUser.dart';
+
 
 class Home extends StatefulWidget{
 
@@ -24,28 +24,11 @@ class _HomeState extends State<Home> {
 
   void getProfile() async {
 
-    final docs=db.collection("/Profiles").doc(FirebaseAuth.instance.currentUser?.uid);
 
-    await docs.get().then((DocumentSnapshot doc) {
-      final data=doc.data() as Map<String,dynamic>;
 
-      setState(() {
 
-        fbUser user=fbUser(name:data?['name'] ,lastname: data?['last_name']);
-                  print(user.name);
-                  print(user.lastname);
 
-        Fluttertoast.showToast(
-            msg: "Welcom : "+nombre,  // message
-            toastLength: Toast.LENGTH_SHORT, // length
-            gravity: ToastGravity.CENTER,    // location
-            timeInSecForIosWeb: 4              // duration
-        );
-      });
-      onError: (e) => print("Error getting document: $e");
-    }
 
-    );
 
 
 
