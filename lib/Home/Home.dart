@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:proyectoflutter/sigelton/DataHolder.dart';
 
 import '../fb_objects/Profil.dart';
 
@@ -31,12 +32,12 @@ class _HomeState extends State<Home> {
       toFirestore: (Profil profil, _) => profil.toFirestore(),
     );
     final docSnap = await ref.get();
-    final profilUser = docSnap.data(); // Convert to City object
-    if (profilUser != null) {
-      print(profilUser);
+     DataHolder().profil= docSnap.data()!; // Convert to City object
+    if (DataHolder().profil != null) {
+      print(DataHolder().profil);
 
       setState(() {
-        sNombre=profilUser.name!;
+        sNombre=DataHolder().profil.name!;
       });
     } else {
       print("No such document.");
