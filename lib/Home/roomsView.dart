@@ -35,7 +35,7 @@ class _roomViewState extends State<roomView> {
           itemBuilder: (BuildContext context, int index) {
             return Container(
               height: 60,
-              color: Colors.teal[colorCodes[index]],
+              color: Colors.blue[colorCodes[index]],
               child: Center(child: Text('Entry to ${entries[index]}',
                   style: TextStyle(fontWeight: FontWeight.bold))),
             );
