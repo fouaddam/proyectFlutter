@@ -8,8 +8,8 @@ class roomView extends StatefulWidget{
 
 class _roomViewState extends State<roomView> {
 
-  final List<String> entries = <String>['A', 'B', 'C'];
-  final List<int> colorCodes = <int>[600, 500, 100];
+  final List<String> entries = <String>['room chat DAM1', 'room chat DAM2', 'room chat DAM3'];
+  final List<int> colorCodes = <int>[200, 400, 600];
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -19,21 +19,31 @@ class _roomViewState extends State<roomView> {
         title: Text("rooms "),
       ),
 
-      body: Center(
-        child:
+      body: Container(
 
-      ListView.separated(
-      padding: const EdgeInsets.all(8),
-      itemCount: entries.length,
-      itemBuilder: (BuildContext context, int index) {
-        return Container(
-          height: 50,
-          color: Colors.amber[colorCodes[index]],
-          child: Center(child: Text('Entry ${entries[index]}')),
-        );
-      },
-      separatorBuilder: (BuildContext context, int index) => const Divider(),
-    ),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/Fondo.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+
+        child:
+        ListView.separated(
+          padding: const EdgeInsets.all(10),
+          itemCount: entries.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+              height: 60,
+              color: Colors.teal[colorCodes[index]],
+              child: Center(child: Text('Entry to ${entries[index]}',
+                  style: TextStyle(fontWeight: FontWeight.bold))),
+            );
+          },
+          separatorBuilder: (BuildContext context, int index) => const Divider(),
+        ),
+
+
       ),
     );
   }
