@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:proyectoflutter/Home/onBoardingView.dart';
+import 'package:proyectoflutter/Home/roomsView.dart';
 
 import 'Home/Home.dart';
 import 'entities/Login_View.dart';
@@ -38,7 +39,8 @@ class _AppState extends State<App> {
         '/Login':(context)=>Login_View(),
         '/Register':(context)=>Register_View(),
         '/Home':(context)=>Home(),
-        '/onBoarding':(context)=>onBoardingView()
+        '/onBoarding':(context)=>onBoardingView(),
+        '/rooms':(context)=>roomView()
 
       },
 
