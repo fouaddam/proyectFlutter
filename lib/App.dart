@@ -34,7 +34,7 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
-      initialRoute: '/rooms',
+      initialRoute: VerificationUser(),
       routes:{
         '/Login':(context)=>Login_View(),
         '/Register':(context)=>Register_View(),
