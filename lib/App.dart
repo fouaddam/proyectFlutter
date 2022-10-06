@@ -1,7 +1,9 @@
 
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:proyectoflutter/Home/SplashView.dart';
 import 'package:proyectoflutter/Home/onBoardingView.dart';
 import 'package:proyectoflutter/Home/roomsView.dart';
 
@@ -19,29 +21,31 @@ class App extends StatefulWidget{
 
 class _AppState extends State<App> {
 
-  String VerificationUser(){
-    final currentUser = FirebaseAuth.instance.currentUser;
-    if(currentUser!=null){
-      print(currentUser.email);
-      return '/onBoarding';
+ final userId=FirebaseAuth.instance.currentUser?.uid;
+
+  String? getUserCurrent(){
+    if(userId==null){
+        return '/Login';
     }else{
-      print(currentUser.toString());
-      return '/Login';
+      return '/Splash';
     }
+
   }
+
+
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
-      initialRoute: VerificationUser(),
+      initialRoute: getUserCurrent(),
       routes:{
         '/Login':(context)=>Login_View(),
         '/Register':(context)=>Register_View(),
         '/Home':(context)=>Home(),
         '/onBoarding':(context)=>onBoardingView(),
-        '/rooms':(context)=>roomView()
-
+        '/rooms':(context)=>roomView(),
+        '/Splash':(context)=>SplashView(),
       },
 
 

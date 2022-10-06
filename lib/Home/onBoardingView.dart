@@ -33,26 +33,7 @@ class _onBoardingViewState extends State<onBoardingView> {
 
   }
 
-  void checkExistingProfile()async{
-   String? idUser =FirebaseAuth.instance.currentUser?.uid;
 
-   DocumentReference<Map<String,dynamic>>refDoc=
-   DB.collection('/Profiles').doc(idUser);
-   DocumentSnapshot<Map<String, dynamic>>documentSnapshot=await refDoc.get();
-
-   if(documentSnapshot.exists){
-     Navigator.of(context).popAndPushNamed('/Home');
-   }
-
-
-  }
-
-  @override
-  void initState() {
-    checkExistingProfile;
-    // TODO: implement initState
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

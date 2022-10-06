@@ -29,6 +29,7 @@ class _Register_ViewState extends State<Register_View> {
         email: inputEmail.getText(),
         password: password,
       );
+      Navigator.of(context).popAndPushNamed('/Login');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');

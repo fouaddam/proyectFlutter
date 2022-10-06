@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:proyectoflutter/fb_objects/Profil.dart';
 
 import '../custom_view/RF_Text.dart';
 
@@ -22,11 +24,24 @@ class _Login_ViewState extends State<Login_View> {
              final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
                  email: inputEmail.getText(),
                  password: inputPassword.getText()
+
              );
-            Navigator.of(context).popAndPushNamed('/onBoarding');
+             final UserId=FirebaseAuth.instance.currentUser?.uid;
+                if(UserId!=null){
+                 final doc =FirebaseFirestore.instance.collection('/Profiles').doc(UserId).withConverter(
+                      fromFirestore: Profil.fromFirestore, toFirestore: (Profil profil, _) => profil.toFirestore());
+                    final docRef=await doc.get();
+                    if(docRef.exists) {
+                      Navigator.of(context).popAndPushNamed('/rooms');
+                    }else{
+                      Navigator.of(context).popAndPushNamed('/onBoarding');
+                    }
+                }
+
            } on FirebaseAuthException catch (e) {
              if (e.code == 'user-not-found') {
                print('No user found for that email.');
+               Navigator.of(context).popAndPushNamed("/Register");
              } else if (e.code == 'wrong-password') {
                print('Wrong password provided for that user.');
              }
