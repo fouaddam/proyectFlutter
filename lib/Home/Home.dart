@@ -73,7 +73,7 @@ class _HomeState extends State<Home> {
             OutlinedButton(
               style: OutlinedButton.styleFrom(
                 backgroundColor: Colors.purple,
-                fixedSize:  Size(450, 50),
+                fixedSize:  Size(100, 30),
                 shadowColor: Colors.black,
                 side: BorderSide(color: Colors.black12, width: 2),
                 textStyle: TextStyle(
@@ -84,10 +84,24 @@ class _HomeState extends State<Home> {
               onPressed: () {
                 Navigator.of(context).popAndPushNamed("/Login");
               },
-              child: Text("Sing In",style: TextStyle(fontSize: 30)),
-
+              child: Text("Sing out",style: TextStyle(fontSize: 30)),
             ),
+        OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            backgroundColor: Colors.purple,
+            fixedSize:  Size(100, 30),
+            shadowColor: Colors.black,
+            side: BorderSide(color: Colors.black12, width: 2),
+            textStyle: TextStyle(
+              color: Colors.purple,
+            ),
+          ),
 
+          onPressed: () {
+            Navigator.of(context).popAndPushNamed("/rooms");
+          },
+          child: Text("rooms chat",style: TextStyle(fontSize: 30)),
+        ),
           ],
         ),
       ),

@@ -17,24 +17,31 @@ class SplashView extends StatefulWidget{
 class _SplashViewState extends State<SplashView> {
 
   FirebaseFirestore db = FirebaseFirestore.instance;
+  final UserID=FirebaseAuth.instance.currentUser?.uid;
 
-  void isLogger() async {
+  void CheckPerfil() async {
     await Future.delayed(Duration(seconds: 5));
-    final UserID=FirebaseAuth.instance.currentUser?.uid;
-    if(UserID==null)Navigator.of(context).popAndPushNamed('/Login');
-
     final docRef = db.collection('/Profiles').doc(UserID).withConverter(
         fromFirestore: Profil.fromFirestore,
         toFirestore: (Profil profil, _) => profil.toFirestore());
-        DocumentSnapshot<Profil> docSnap=await docRef.get();
+    DocumentSnapshot<Profil> docSnap=await docRef.get();
+    if(docSnap==null){
+      Navigator.of(context).popAndPushNamed('/onBoardingView');
+    }else
+    {
+      Navigator.of(context).popAndPushNamed('/Home');
+    }
+  }
 
-        if(docSnap==null){
-          Navigator.of(context).popAndPushNamed('/onBoardingView');
-        }else
-          {
-            Navigator.of(context).popAndPushNamed('/Home');
-          }
+  void isLogger() async {
+    await Future.delayed(Duration(seconds: 5));
 
+    if(UserID==null) {
+      Navigator.of(context).popAndPushNamed('/Login');
+    }else{
+      CheckPerfil();
+
+    }
 
 
   }

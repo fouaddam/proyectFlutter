@@ -32,7 +32,7 @@ class _Login_ViewState extends State<Login_View> {
                       fromFirestore: Profil.fromFirestore, toFirestore: (Profil profil, _) => profil.toFirestore());
                     final docRef=await doc.get();
                     if(docRef.exists) {
-                      Navigator.of(context).popAndPushNamed('/rooms');
+                      Navigator.of(context).popAndPushNamed('/Home');
                     }else{
                       Navigator.of(context).popAndPushNamed('/onBoarding');
                     }

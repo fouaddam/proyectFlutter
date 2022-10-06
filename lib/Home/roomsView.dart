@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class roomView extends StatefulWidget{
   @override
@@ -8,6 +9,14 @@ class roomView extends StatefulWidget{
 
 class _roomViewState extends State<roomView> {
 
+  FirebaseStorage firebaseStorage=FirebaseStorage.instance;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+  }
   final List<String> entries = <String>['room chat DAM1', 'room chat DAM2', 'room chat DAM3'];
   final List<int> colorCodes = <int>[200, 400, 600];
   @override
@@ -42,6 +51,7 @@ class _roomViewState extends State<roomView> {
           },
           separatorBuilder: (BuildContext context, int index) => const Divider(),
         ),
+
 
 
       ),

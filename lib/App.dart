@@ -21,16 +21,7 @@ class App extends StatefulWidget{
 
 class _AppState extends State<App> {
 
- final userId=FirebaseAuth.instance.currentUser?.uid;
-
-  String? getUserCurrent(){
-    if(userId==null){
-        return '/Login';
-    }else{
-      return '/Splash';
-    }
-
-  }
+FirebaseFirestore db=FirebaseFirestore.instance;
 
 
 
@@ -38,7 +29,7 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
-      initialRoute: getUserCurrent(),
+      initialRoute:'/Splash',
       routes:{
         '/Login':(context)=>Login_View(),
         '/Register':(context)=>Register_View(),
