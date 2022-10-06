@@ -28,7 +28,7 @@ class _SplashViewState extends State<SplashView> {
         toFirestore: (Profil profil, _) => profil.toFirestore());
         DocumentSnapshot<Profil> docSnap=await docRef.get();
 
-        if(docSnap==null){
+        if(docSnap.exists==null){
           Navigator.of(context).popAndPushNamed('/onBoardingView');
         }else
           {
@@ -42,7 +42,6 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     isLogger();
   }
