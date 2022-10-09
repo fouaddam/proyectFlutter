@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+
+import '../fb_objects/Room.dart';
 
 class roomView extends StatefulWidget{
   @override
@@ -10,27 +13,37 @@ class roomView extends StatefulWidget{
 class _roomViewState extends State<roomView> {
 
   FirebaseStorage firebaseStorage=FirebaseStorage.instance;
+  FirebaseFirestore firebaseFirestore=FirebaseFirestore.instance;
+  List<QueryDocumentSnapshot<Room>> list=[];
+
+
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+   firebaseFirestore.collection('/rooms').withConverter(
+        fromFirestore: Room.fromFirestore,
+        toFirestore:(Room room, _)=> room.toFirestore())
+                              .get().then((value) =>
+                           {
+                             list=value.docs,
+                           });
 
   }
-  final List<String> entries = <String>['room chat DAM1', 'room chat DAM2', 'room chat DAM3'];
-  final List<int> colorCodes = <int>[200, 400, 600];
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
 
       appBar: AppBar(
-        title: Text("rooms "),
+        title: const Text("rooms "),
       ),
 
       body: Container(
 
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/Fondo.jpg'),
             fit: BoxFit.cover,
@@ -40,14 +53,19 @@ class _roomViewState extends State<roomView> {
         child:
         ListView.separated(
           padding: const EdgeInsets.all(10),
-          itemCount: entries.length,
+          itemCount: list.length,
           itemBuilder: (BuildContext context, int index) {
-            return Container(
-              height: 60,
-              color: Colors.red[colorCodes[index]],
-              child: Center(child: Text('Entry to ${entries[index]}',
-                  style: TextStyle(fontWeight: FontWeight.bold))),
+            return
+
+                ListTile(
+                title: Text(list[index].data().name!,style: const TextStyle(fontWeight: FontWeight.bold,height: 3
+                    , fontSize: 18,  color: Colors.pink,
+                  decoration: TextDecoration.overline,
+                  decorationColor: Colors.teal,
+                  decorationStyle: TextDecorationStyle.double,)),
+            leading: const Icon(Icons.ad_units),
             );
+
           },
           separatorBuilder: (BuildContext context, int index) => const Divider(),
         ),
