@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,27 +12,49 @@ class roomView extends StatefulWidget{
   State<roomView> createState() => _roomViewState();
 }
 
-class _roomViewState extends State<roomView> {
+class _roomViewState extends State<roomView>   {
 
-  FirebaseStorage firebaseStorage=FirebaseStorage.instance;
-  FirebaseFirestore firebaseFirestore=FirebaseFirestore.instance;
-  List<QueryDocumentSnapshot<Room>> list=[];
+
+ final FirebaseStorage firebaseStorage=FirebaseStorage.instance;
+ final  FirebaseFirestore firebaseFirestore=FirebaseFirestore.instance;
+  List<QueryDocumentSnapshot<Room>> lista=[];
+
+
+
+
+
+
+
+
+
 
 
 
   @override
-  void initState() {
+  void initState()  {
     // TODO: implement initState
     super.initState();
-   firebaseFirestore.collection('/rooms').withConverter(
-        fromFirestore: Room.fromFirestore,
-        toFirestore:(Room room, _)=> room.toFirestore())
-                              .get().then((value) =>
-                           {
-                             list=value.docs,
-                           });
+
+    getRooms();
 
   }
+
+  getRooms() async {
+    final ref =firebaseFirestore.collection("/rooms").withConverter(
+      fromFirestore: Room.fromFirestore,
+      toFirestore: (Room room, _) => room.toFirestore(),
+    );
+    final docSnap = await ref.get();
+
+    setState(() {
+      lista=docSnap.docs;
+    });
+  }
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,38 +65,37 @@ class _roomViewState extends State<roomView> {
         title: const Text("rooms "),
       ),
 
-      body: Container(
+      body:
+              Container(
 
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/Fondo.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
 
-        child:
-        ListView.separated(
-          padding: const EdgeInsets.all(10),
-          itemCount: list.length,
-          itemBuilder: (BuildContext context, int index) {
-            return
+                decoration: const BoxDecoration(
 
-                ListTile(
-                title: Text(list[index].data().name!,style: const TextStyle(fontWeight: FontWeight.bold,height: 3
-                    , fontSize: 18,  color: Colors.pink,
-                  decoration: TextDecoration.overline,
-                  decorationColor: Colors.teal,
-                  decorationStyle: TextDecorationStyle.double,)),
-            leading: const Icon(Icons.ad_units),
-            );
+                  image: DecorationImage(
 
-          },
-          separatorBuilder: (BuildContext context, int index) => const Divider(),
-        ),
+                    image: AssetImage('assets/Fondo.jpg'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
 
 
 
-      ),
-    );
+                child:
+                ListView.separated(
+
+                  padding: const EdgeInsets.all(10),
+                  itemCount: lista.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListView();
+                  },
+                  separatorBuilder: (BuildContext context, int index) => const Divider(),
+                ),
+
+
+
+              ),
+
+          );
+
   }
 }
