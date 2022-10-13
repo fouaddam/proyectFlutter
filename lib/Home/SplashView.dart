@@ -60,6 +60,7 @@ class _SplashViewState extends State<SplashView> {
     return Scaffold(
         body: Center(
           child: Text("bienvenido fluter chat"),
+
         )
     );
   }

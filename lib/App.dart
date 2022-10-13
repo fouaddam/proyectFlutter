@@ -8,6 +8,7 @@ import 'package:proyectoflutter/Home/onBoardingView.dart';
 import 'package:proyectoflutter/Home/roomsView.dart';
 
 import 'Home/Home.dart';
+import 'Home/Home2.dart';
 import 'entities/Login_View.dart';
 import 'entities/Register_View.dart';
 
@@ -29,7 +30,7 @@ FirebaseFirestore db=FirebaseFirestore.instance;
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
-      initialRoute:'/Login',
+      initialRoute:'/Home2',
       routes:{
         '/Login':(context)=>Login_View(),
         '/Register':(context)=>Register_View(),
@@ -37,6 +38,7 @@ FirebaseFirestore db=FirebaseFirestore.instance;
         '/onBoarding':(context)=>onBoardingView(),
         '/rooms':(context)=>roomView(),
         '/Splash':(context)=>SplashView(),
+        '/Home2':(context)=>Home2(),
       },
 
 
