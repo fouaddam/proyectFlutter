@@ -30,6 +30,7 @@ class _SplashViewState extends State<SplashView> {
     }else
     {
       Navigator.of(context).popAndPushNamed('/Home');
+      DataHolder().profil=docSnap.data()!;
     }
   }
 

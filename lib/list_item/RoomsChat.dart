@@ -23,16 +23,20 @@ class _RoomsChatState extends State<RoomsChat> {
 
   final FirebaseFirestore db=FirebaseFirestore.instance;
     List<QueryDocumentSnapshot<ChatText>> listatexts=[];
+       RF_Text inputText=new RF_Text();
+  final String Path=DataHolder().COLLECTION_ROOMS+DataHolder().roomSelected.Uid!+
+      DataHolder().COLLECTION_TEXTS;
 
 
+  void PressedPressed(){
+    final docRef = db.collection(Path);
+    ChatText textChat=new ChatText(text:inputText.getText(),author: DataHolder().profil.id,time: Timestamp.now());
+    docRef.add(textChat.toFirestore());
+
+  }
 
   void DescargarChats() async {
 
-    //DataHolder().roomSelected.Uid!
-    String Path=DataHolder().COLLECTION_ROOMS+DataHolder().roomSelected.Uid!+
-        DataHolder().COLLECTION_TEXTS;
-
-    print(DataHolder().roomSelected.Uid!);
     final ref = db.collection(Path).withConverter(
       fromFirestore: ChatText.fromFirestore,
       toFirestore: (ChatText chatText, _) => chatText.toFirestore(),
@@ -89,7 +93,15 @@ class _RoomsChatState extends State<RoomsChat> {
               separatorBuilder: (BuildContext context, int index) => const Divider(),
             ),
             SizedBox(height: 300,),
-            RF_Text(),
+
+            inputText,
+            FloatingActionButton.extended(
+              onPressed: PressedPressed,
+              label: const Text('Send'),
+              icon: const Icon(Icons.thumb_up),
+              backgroundColor: Colors.pink,
+            ),
+
 
           ],
         )

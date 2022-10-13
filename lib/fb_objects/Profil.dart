@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Profil {
+  final String? id;
   final String? name;
   final String? last_name;
   final int? age;
@@ -10,6 +11,7 @@ class Profil {
 
 
   Profil({
+    this.id="",
     this.name="",
     this.last_name="",
     this.age=0,
@@ -25,6 +27,7 @@ class Profil {
       ) {
     final data = snapshot.data();
     return Profil(
+      id: snapshot.id,
       name: data?['name'],
       last_name: data?['last_name'],
       age: data?['age'],
