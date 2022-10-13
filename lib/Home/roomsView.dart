@@ -24,14 +24,6 @@ class _roomViewState extends State<roomView>   {
 
 
 
-
-
-
-
-
-
-
-
   @override
   void initState()  {
     // TODO: implement initState

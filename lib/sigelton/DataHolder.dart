@@ -7,6 +7,10 @@ class DataHolder{
 
 
   static final DataHolder _dataHolder=new DataHolder._iternal();
+
+  String COLLECTION_ROOMS="/rooms/";
+  String COLLECTION_TEXTS="/Texts";
+
   Profil profil=new Profil();
   Room roomSelected=new Room();
 

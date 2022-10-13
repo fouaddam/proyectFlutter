@@ -4,9 +4,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Room {
 
+  final String? Uid;
   final String? name;
 
+
   Room({
+    this.Uid,
     this.name,
       });
 
@@ -17,6 +20,7 @@ class Room {
 
     return Room(
       name: data?['name'],
+      Uid: snapshot.id
     );
 
   }

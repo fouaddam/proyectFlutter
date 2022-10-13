@@ -9,7 +9,7 @@ import 'package:proyectoflutter/Home/roomsView.dart';
 
 import 'Home/Home.dart';
 import 'Home/Home2.dart';
-import 'Home/RoomsChat.dart';
+import 'list_item/RoomsChat.dart';
 import 'entities/Login_View.dart';
 import 'entities/Register_View.dart';
 
