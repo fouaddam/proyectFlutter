@@ -3,24 +3,30 @@
 
 import 'package:flutter/material.dart';
 
-class ListView extends StatefulWidget{
-  @override
-  State<ListView> createState() => _ListViewState();
-}
+class RoomItem extends StatelessWidget{
+    final  String name;
+    final Function(int index) onClick;
+    final int index;
 
-class _ListViewState extends State<ListView> {
+        const RoomItem({super.key, required this.name, required this.onClick, required this.index});
+
+
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return const ListTile(
+    return  ListTile(
 
-      title: Text("text",style:
-      TextStyle(fontWeight: FontWeight.bold,height: 3
+      title: Text(name,style:
+      const TextStyle(fontWeight: FontWeight.bold,height: 3
         , fontSize: 18,  color: Colors.pink,
         decoration: TextDecoration.overline,
         decorationColor: Colors.teal,
         decorationStyle: TextDecorationStyle.double,)),
       leading: Icon(Icons.ad_units),
-    );;
+      onTap: (){
+        onClick(index);
+      },
+    );
   }
 }

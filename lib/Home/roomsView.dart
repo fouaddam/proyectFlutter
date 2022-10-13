@@ -4,7 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:proyectoflutter/sigelton/DataHolder.dart';
 
+import '../custom_view/list_view.dart';
 import '../fb_objects/Room.dart';
 
 class roomView extends StatefulWidget{
@@ -51,6 +53,11 @@ class _roomViewState extends State<roomView>   {
     });
   }
 
+  void listItemShortClick(int index){
+    DataHolder().roomSelected=lista[index].data();
+    Navigator.of(context).pushNamed('/RoomsChat');
+
+  }
 
 
 
@@ -86,7 +93,7 @@ class _roomViewState extends State<roomView>   {
                   padding: const EdgeInsets.all(10),
                   itemCount: lista.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return ListView();
+                    return  RoomItem(name:lista[index].data().name!,onClick: listItemShortClick,index: index,);
                   },
                   separatorBuilder: (BuildContext context, int index) => const Divider(),
                 ),

@@ -9,6 +9,7 @@ import 'package:proyectoflutter/Home/roomsView.dart';
 
 import 'Home/Home.dart';
 import 'Home/Home2.dart';
+import 'Home/RoomsChat.dart';
 import 'entities/Login_View.dart';
 import 'entities/Register_View.dart';
 
@@ -30,7 +31,7 @@ FirebaseFirestore db=FirebaseFirestore.instance;
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
-      initialRoute:'/Home2',
+      initialRoute:'/rooms',
       routes:{
         '/Login':(context)=>Login_View(),
         '/Register':(context)=>Register_View(),
@@ -39,6 +40,7 @@ FirebaseFirestore db=FirebaseFirestore.instance;
         '/rooms':(context)=>roomView(),
         '/Splash':(context)=>SplashView(),
         '/Home2':(context)=>Home2(),
+        '/RoomsChat':(context)=>RoomsChat()
       },
 
 
