@@ -41,6 +41,9 @@ dependencies:
   fluttertoast: ^8.0.9
   firebase_storage: ^10.3.11
 
+ eurekalib:
+   path: ../eurekalib
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
