@@ -16,6 +16,7 @@ class DataHolder{
     String COLLECTION_ROOMS="/rooms/";
     String COLLECTION_TEXTS="/Texts";
     String COLLECTION_PROFILE="/Profiles";
+    String? MYUID=FirebaseAuth.instance.currentUser?.uid;
 
     Profil profil=new Profil();
     Room roomSelected=new Room();
@@ -29,7 +30,7 @@ class DataHolder{
       }
 
      void descargarMIPerfil() async {
-       profil=  await FBAdmin.Descargar_Perfil(FirebaseAuth.instance.currentUser?.uid) as Profil;
+       profil=  await FBAdmin.Descargar_Perfil(MYUID) as Profil;
     }
   
 
