@@ -37,17 +37,31 @@ class _RoomsChatState extends State<RoomsChat> {
 
   void DescargarChats() async {
 
-    final ref = db.collection(Path).withConverter(
+
+    final docRef = db.collection(Path).withConverter(
       fromFirestore: ChatText.fromFirestore,
       toFirestore: (ChatText chatText, _) => chatText.toFirestore(),
     );
-    final docSnap = await ref.get();
+
+    docRef.snapshots().listen(
+          (event) =>
+              setState(() {
+                listatexts.clear();
+                listatexts=event.docs;
+              }
+              ),
+      onError: (error) =>
+                print("Listen failed: $error"
+          ),
+    );
+
+    /*final docSnap = await ref.get();
 
 
     setState(() {
-      listatexts=docSnap.docs;
-    });
-    print("+++++++++++++++++"+listatexts.toString());
+          listatexts=docSnap.docs;
+      });
+    print("+++++++++++++++++"+listatexts.toString());*/
 
   }
 
@@ -97,8 +111,8 @@ class _RoomsChatState extends State<RoomsChat> {
             inputText,
             FloatingActionButton.extended(
               onPressed: PressedPressed,
-              label: const Text('Send'),
-              icon: const Icon(Icons.thumb_up),
+                  label: const Text('Send'),
+                  icon: const Icon(Icons.thumb_up),
               backgroundColor: Colors.pink,
             ),
 

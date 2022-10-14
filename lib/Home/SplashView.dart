@@ -19,6 +19,7 @@ class _SplashViewState extends State<SplashView> {
   FirebaseFirestore db = FirebaseFirestore.instance;
   final UserID=FirebaseAuth.instance.currentUser?.uid;
 
+
   void CheckPerfil() async {
     await Future.delayed(Duration(seconds: 5));
     final docRef = db.collection('/Profiles').doc(UserID).withConverter(
