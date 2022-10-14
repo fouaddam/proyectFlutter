@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:proyectoflutter/fb_objects/Profil.dart';
 import 'package:proyectoflutter/fb_objects/Room.dart';
 
+import '../fb_objects/TextChat.dart';
 import '../firebase/FBAdmin.dart';
 
 class DataHolder{
@@ -20,18 +21,19 @@ class DataHolder{
 
     Profil profil=new Profil();
     Room roomSelected=new Room();
+    ChatText textChat=new ChatText();
 
-      DataHolder._iternal(){
+          DataHolder._iternal(){
 
-      }
+          }
 
-      factory DataHolder(){
-        return _dataHolder;
-      }
+          factory DataHolder(){
+            return _dataHolder;
+          }
 
-     void descargarMIPerfil() async {
-       profil=  await FBAdmin.Descargar_Perfil(MYUID) as Profil;
-    }
+           void descargarMIPerfil() async {
+             profil=  await FBAdmin.Descargar_Perfil(MYUID) as Profil;
+          }
   
 
 }
