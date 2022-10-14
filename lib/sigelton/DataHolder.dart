@@ -10,8 +10,6 @@ import '../fb_objects/TextChat.dart';
 import '../firebase/FBAdmin.dart';
 
 class DataHolder{
-
-
   static final DataHolder _dataHolder=new DataHolder._iternal();
 
     String COLLECTION_ROOMS="/rooms/";
@@ -22,6 +20,8 @@ class DataHolder{
     Profil profil=new Profil();
     Room roomSelected=new Room();
     ChatText textChat=new ChatText();
+    FBAdmin fbAdmin=new FBAdmin();
+
 
           DataHolder._iternal(){
 
@@ -32,7 +32,7 @@ class DataHolder{
           }
 
            void descargarMIPerfil() async {
-             profil=  await FBAdmin.Descargar_Perfil(MYUID) as Profil;
+             profil= fbAdmin.Descargar_Perfil(MYUID) as Profil;
           }
   
 
