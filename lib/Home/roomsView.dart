@@ -20,7 +20,7 @@ class _roomViewState extends State<roomView>   {
  final FirebaseStorage firebaseStorage=FirebaseStorage.instance;
  final  FirebaseFirestore firebaseFirestore=FirebaseFirestore.instance;
   List<QueryDocumentSnapshot<Room>> lista=[];
-
+ List<Room>lista2=[];
 
 
 
@@ -38,11 +38,14 @@ class _roomViewState extends State<roomView>   {
       fromFirestore: Room.fromFirestore,
       toFirestore: (Room room, _) => room.toFirestore(),
     );
-    final docSnap = await ref.get();
+    final docSnap = await ref.get().then((value) =>
+        setState(() {
+      lista=value.docs.cast();
+    })
+    );
 
-    setState(() {
-      lista=docSnap.docs;
-    });
+
+
   }
 
   void listItemShortClick(int index){
