@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../fb_objects/RoomsPhotoCard.dart';
+
 class CardView extends StatelessWidget{
 
-  final List<String> nombre;
+  final List<Room2> nombre;
 
   const CardView({super.key, required this.nombre});
   @override
@@ -18,17 +20,25 @@ class CardView extends StatelessWidget{
           ),
           itemCount: nombre.length,
           itemBuilder: (BuildContext context, int index) {
-            return Card(
-              color: Colors.black12,
-              child: Center(child: Text(nombre[index],
-              style: TextStyle(
-                fontSize: 25,
-                color: Colors.orange,
+            return Container(
+                decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+            image: DecorationImage(
+            image: NetworkImage(nombre[index].photo!),
+            fit:BoxFit.cover
+            ),
+                ),
+              child: Card(
+                color: Colors.black12,
+                child: Center(child: Text(nombre[index].name!,
+                style: TextStyle(
+                  fontSize: 25,
+                  color: Colors.orange,
+
+                ),
+                )),
 
               ),
-              )),
-
-
             );
 
           }

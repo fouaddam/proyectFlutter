@@ -30,7 +30,7 @@ FirebaseFirestore db=FirebaseFirestore.instance;
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
-      initialRoute:'/rooms',
+      initialRoute:'/Home2',
       routes:{
         '/Login':(context)=>Login_View(),
         '/Register':(context)=>Register_View(),

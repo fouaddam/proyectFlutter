@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:proyectoflutter/fb_objects/Profil.dart';
 import 'package:proyectoflutter/sigelton/DataHolder.dart';
 
+import '../fb_objects/RoomsPhotoCard.dart';
+
 class FBAdmin{
 
 
@@ -14,6 +16,24 @@ class FBAdmin{
 
         FirebaseFirestore db =FirebaseFirestore.instance;
         String sProfilCollection=DataHolder().COLLECTION_PROFILE;
+        List<Room2>listaRomms2=[];
+
+
+        Future<List<Room2>> Descargar_Room2() async {
+
+          final ref = db.collection(DataHolder().COLLECTION_ROOMS).withConverter(
+            fromFirestore: Room2.fromFirestore,
+            toFirestore: (Room2 room2, _) => room2.toFirestore(),
+          );
+          final docSnap = await ref.get();
+         final docs= docSnap.docs;
+
+          for(int i=0;i<docs.length;i++){
+                listaRomms2.add(docs[i].data());
+                         }
+          return listaRomms2;
+        }
+
 
 
         Future<Profil?> Descargar_Perfil(String? sUidUSer) async {

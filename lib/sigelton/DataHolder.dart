@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:proyectoflutter/fb_objects/Profil.dart';
 import 'package:proyectoflutter/fb_objects/Room.dart';
 
+import '../fb_objects/RoomsPhotoCard.dart';
 import '../fb_objects/TextChat.dart';
 import '../firebase/FBAdmin.dart';
 
@@ -20,6 +21,8 @@ class DataHolder{
     Profil profil=new Profil();
     Room roomSelected=new Room();
     ChatText textChat=new ChatText();
+    Room2 room2=new Room2();
+    List<Room2>listaRooms2=[];
     FBAdmin fbAdmin=new FBAdmin();
 
 
@@ -33,6 +36,11 @@ class DataHolder{
 
            void descargarMIPerfil() async {
              profil= fbAdmin.Descargar_Perfil(MYUID) as Profil;
+          }
+
+          void descargar_rooms2() async{
+            listaRooms2=await fbAdmin.listaRomms2;
+            print(listaRooms2.toString());
           }
   
 
