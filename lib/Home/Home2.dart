@@ -33,10 +33,12 @@ class _Home2State extends State<Home2> {
       }
     }
 
-    void actualizarEstado() async {
-    nombre= await DataHolder().listaRooms2;
+    void actualizarLista() async {
+    @override
+      setState(){
 
-    }
+        }
+      }
 
   @override
   void initState() {
@@ -46,11 +48,6 @@ class _Home2State extends State<Home2> {
 
 
   }
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {

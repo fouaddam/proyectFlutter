@@ -18,12 +18,13 @@ class DataHolder{
     String COLLECTION_PROFILE="/Profiles";
     String? MYUID=FirebaseAuth.instance.currentUser?.uid;
 
+
+    FBAdmin fbAdmin=new FBAdmin();
     Profil profil=new Profil();
     Room roomSelected=new Room();
     ChatText textChat=new ChatText();
     Room2 room2=new Room2();
-    List<Room2>listaRooms2=[];
-    FBAdmin fbAdmin=new FBAdmin();
+    List<Room2>?listaRooms2=[];
 
 
           DataHolder._iternal(){
@@ -38,9 +39,9 @@ class DataHolder{
              profil= fbAdmin.Descargar_Perfil(MYUID) as Profil;
           }
 
-          void descargar_rooms2() async{
-            listaRooms2=await fbAdmin.listaRomms2;
-            print(listaRooms2.toString());
+          void descargar_rooms2() {
+            //listaRooms2= fbAdmin.Descargar_Room2() as List<Room2>;
+
           }
   
 
