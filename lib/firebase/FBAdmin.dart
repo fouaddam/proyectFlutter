@@ -19,7 +19,7 @@ class FBAdmin{
         List<Room2>listaRommsC=[];
 
 
-        Future<List<Room2>>? Descargar_Room2() async {
+       /* Future<List<Room2>>? Descargar_Room2() async {
 
           final ref = db.collection("/rooms").withConverter(
             fromFirestore: Room2.fromFirestore,
@@ -33,8 +33,22 @@ class FBAdmin{
                          }
 
           return listaRommsC;
-        }
+        }*/
 
+    /*    void Descargar_Room2(List<RoomsPhotosCard> nombre) async {
+
+          final ref = db.collection("/rooms").where("members", isGreaterThan: 50)
+              .withConverter(
+            fromFirestore: Room2.fromFirestore,
+            toFirestore: (Room2 room2, _) => room2.toFirestore(),
+          );
+          final docSnap = await ref.get();
+          final docs= docSnap.docs;
+
+          for(int i=0;i<docs.length;i++){
+            nombre.add(docs[i].data());
+          }
+        }*/
 
 
         Future<Profil?> Descargar_Perfil(String? sUidUSer) async {
@@ -57,3 +71,4 @@ class FBAdmin{
 
 
 }
+

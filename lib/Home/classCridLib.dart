@@ -9,7 +9,9 @@ class Gris extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return RoomCard(sImgURL: sImgURL, sName: sName);
+    return Scaffold(
+
+    );
   }
 
 
