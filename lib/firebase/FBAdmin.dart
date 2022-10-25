@@ -21,7 +21,7 @@ class FBAdmin{
 
         Future<List<Room2>> Descargar_Room2() async {
 
-          final ref = db.collection(DataHolder().COLLECTION_ROOMS).withConverter(
+          final ref = db.collection('/rooms').withConverter(
             fromFirestore: Room2.fromFirestore,
             toFirestore: (Room2 room2, _) => room2.toFirestore(),
           );
@@ -30,6 +30,7 @@ class FBAdmin{
 
           for(int i=0;i<docs.length;i++){
                 listaRomms2.add(docs[i].data());
+
                          }
           return listaRomms2;
         }

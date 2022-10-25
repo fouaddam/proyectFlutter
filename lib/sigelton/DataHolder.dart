@@ -21,9 +21,10 @@ class DataHolder{
     Profil profil=new Profil();
     Room roomSelected=new Room();
     ChatText textChat=new ChatText();
-    Room2 room2=new Room2();
+    Room2 room2selected= Room2();
+
     List<Room2>listaRooms2=[];
-    FBAdmin fbAdmin=new FBAdmin();
+  /*  FBAdmin fbAdmin=new FBAdmin();*/
 
 
           DataHolder._iternal(){
@@ -34,14 +35,14 @@ class DataHolder{
             return _dataHolder;
           }
 
-           void descargarMIPerfil() async {
+        /*   void descargarMIPerfil() async {
              profil= fbAdmin.Descargar_Perfil(MYUID) as Profil;
-          }
+          }*/
 
-          void descargar_rooms2() async{
+         /* void descargar_rooms2() async{
             listaRooms2=await fbAdmin.listaRomms2;
             print(listaRooms2.toString());
-          }
+          }*/
   
 
 }

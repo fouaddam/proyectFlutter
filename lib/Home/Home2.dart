@@ -20,6 +20,7 @@ class _Home2State extends State<Home2> {
 
   void Descargar_Room2() async {
 
+
     final ref = db.collection('/rooms').withConverter(
       fromFirestore: Room2.fromFirestore,
       toFirestore: (Room2 room2, _) => room2.toFirestore(),
@@ -29,12 +30,12 @@ class _Home2State extends State<Home2> {
 
       for(int i=0;i<docs.length;i++){
         nombre.add(docs[i].data());
-        print(nombre.first.photo);
+
       }
     }
 
     void actualizarEstado() async {
-    nombre= await DataHolder().listaRooms2;
+      print(DataHolder().listaRooms2);
 
     }
 
@@ -43,6 +44,7 @@ class _Home2State extends State<Home2> {
     // TODO: implement initState
     super.initState();
     Descargar_Room2();
+   
 
 
   }
