@@ -11,38 +11,39 @@ import '../fb_objects/TextChat.dart';
 import '../firebase/FBAdmin.dart';
 
 class DataHolder{
-  static final DataHolder _dataHolder=new DataHolder._iternal();
+  static final DataHolder _dataHolder = new DataHolder._internal();
 
     String COLLECTION_ROOMS="/rooms/";
     String COLLECTION_TEXTS="/Texts";
     String COLLECTION_PROFILE="/Profiles";
     String? MYUID=FirebaseAuth.instance.currentUser?.uid;
+    final String ROOMSCHAT='/RoomsChat';
 
+
+    FBAdmin fbAdmin=new FBAdmin();
     Profil profil=new Profil();
     Room roomSelected=new Room();
     ChatText textChat=new ChatText();
-    Room2 room2selected= Room2();
-
-    List<Room2>listaRooms2=[];
-  /*  FBAdmin fbAdmin=new FBAdmin();*/
+    Room2 room2=new Room2();
+    List<Room2>?listaRooms2=[];
 
 
-          DataHolder._iternal(){
 
-          }
 
-          factory DataHolder(){
-            return _dataHolder;
-          }
+  factory DataHolder(){
+    return _dataHolder;
+  }
 
-        /*   void descargarMIPerfil() async {
+  DataHolder._internal();
+
+           void descargarMIPerfil() async {
              profil= fbAdmin.Descargar_Perfil(MYUID) as Profil;
-          }*/
+          }
 
-         /* void descargar_rooms2() async{
-            listaRooms2=await fbAdmin.listaRomms2;
-            print(listaRooms2.toString());
-          }*/
+          void descargar_rooms2() {
+            //listaRooms2= fbAdmin.Descargar_Room2() as List<Room2>;
+
+          }
   
 
 }

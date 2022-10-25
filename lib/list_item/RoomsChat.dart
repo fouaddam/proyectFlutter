@@ -23,20 +23,20 @@ class _RoomsChatState extends State<RoomsChat> {
 
   final FirebaseFirestore db=FirebaseFirestore.instance;
     List<QueryDocumentSnapshot<ChatText>> listatexts=[];
-       RF_Text inputText=new RF_Text();
+       RF_Text inputText= RF_Text();
+
   final String Path=DataHolder().COLLECTION_ROOMS+DataHolder().roomSelected.Uid!+
-      DataHolder().COLLECTION_TEXTS;
+           DataHolder().COLLECTION_TEXTS;
 
 
   void PressedPressed(){
     final docRef = db.collection(Path);
-    ChatText textChat=new ChatText(text:inputText.getText(),author: DataHolder().profil.id,time: Timestamp.now());
+    ChatText textChat= ChatText(text:inputText.getText(),author: DataHolder().profil.id,time: Timestamp.now());
     docRef.add(textChat.toFirestore());
 
   }
 
   void DescargarChats() async {
-
 
     final docRef = db.collection(Path).withConverter(
       fromFirestore: ChatText.fromFirestore,
@@ -45,9 +45,9 @@ class _RoomsChatState extends State<RoomsChat> {
 
     docRef.snapshots().listen(
           (event) =>
-              setState(() {
+              setState(()  {
                 listatexts.clear();
-                listatexts=event.docs;
+                listatexts= event.docs;
               }
               ),
       onError: (error) =>
@@ -69,7 +69,12 @@ class _RoomsChatState extends State<RoomsChat> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    DescargarChats();
+    setState(() {
+      DescargarChats();
+    });
+
+
+
   }
 
   void listItemShortClick(int index){
