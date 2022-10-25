@@ -20,11 +20,12 @@ class DataHolder{
     final String ROOMSCHAT='/RoomsChat';
 
 
-    FBAdmin fbAdmin=new FBAdmin();
+
     Profil profil=new Profil();
     Room roomSelected=new Room();
     ChatText textChat=new ChatText();
     Room2 room2=new Room2();
+    Room2 room2selected=Room2();
     List<Room2>?listaRooms2=[];
 
 
@@ -36,14 +37,7 @@ class DataHolder{
 
   DataHolder._internal();
 
-           void descargarMIPerfil() async {
-             profil= fbAdmin.Descargar_Perfil(MYUID) as Profil;
-          }
 
-          void descargar_rooms2() {
-            //listaRooms2= fbAdmin.Descargar_Room2() as List<Room2>;
-
-          }
   
 
 }

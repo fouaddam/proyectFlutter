@@ -17,7 +17,7 @@ class _RoomChatCridState extends State<RoomChatCrid> {
   List<Room2>listaRoom2=[];
   FBAdmin fbAdmin= FBAdmin();
 
-  void DescargaPerfiles() async {
+  void DescargaRooms() async {
     listaRoom2=await fbAdmin.Descargar_Room2();
   }
 
@@ -26,7 +26,7 @@ class _RoomChatCridState extends State<RoomChatCrid> {
     // TODO: implement initState
     super.initState();
     setState(() {
-      DescargaPerfiles();
+      DescargaRooms();
     });
   }
 

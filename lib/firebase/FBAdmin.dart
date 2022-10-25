@@ -6,34 +6,32 @@ import 'package:proyectoflutter/sigelton/DataHolder.dart';
 
 import '../fb_objects/RoomsPhotoCard.dart';
 
-class FBAdmin{
+class FBAdmin {
 
 
+  FBAdmin() {
 
-        FBAdmin(){
+  }
 
-        }
-
-        FirebaseFirestore db =FirebaseFirestore.instance;
-        String sProfilCollection=DataHolder().COLLECTION_PROFILE;
-        List<Room2>listaRommsC=[];
+  FirebaseFirestore db = FirebaseFirestore.instance;
+  String sProfilCollection = DataHolder().COLLECTION_PROFILE;
+  List<Room2>listaRommsC = [];
 
 
-       /* Future<List<Room2>>? Descargar_Room2() async {
+  Future<List<Room2>> Descargar_Room2() async {
+    final ref = db.collection("/rooms").withConverter(
+      fromFirestore: Room2.fromFirestore,
+      toFirestore: (Room2 room2, _) => room2.toFirestore(),
+    );
+    final docSnap = await ref.get();
+    final docs = docSnap.docs;
 
-          final ref = db.collection("/rooms").withConverter(
-            fromFirestore: Room2.fromFirestore,
-            toFirestore: (Room2 room2, _) => room2.toFirestore(),
-          );
-          final docSnap = await ref.get();
-          final docs= docSnap.docs;
+    for (int i = 0; i < docs.length; i++) {
+      listaRommsC.add(docs[i].data());
+    }
 
-          for(int i=0;i<docs.length;i++){
-                listaRommsC.add(docs[i].data());
-                         }
+    return listaRommsC;
 
-          return listaRommsC;
-        }*/
 
     /*    void Descargar_Room2(List<RoomsPhotosCard> nombre) async {
 
@@ -51,24 +49,14 @@ class FBAdmin{
         }*/
 
 
-        Future<Profil?> Descargar_Perfil(String? sUidUSer) async {
-
-          final ref = db.collection(sProfilCollection).doc(sUidUSer).withConverter(
-            fromFirestore: Profil.fromFirestore,
-            toFirestore: (Profil profil, _) => profil.toFirestore(),
-          );
-          final docSnap = await ref.get();
-          final profil = docSnap.data(); // Convert to City object
-          return profil;
-
-        }
-
-
-
-
-
-
-
-
+    Future<Profil?> Descargar_Perfil(String? sUidUSer) async {
+      final ref = db.collection(sProfilCollection).doc(sUidUSer).withConverter(
+        fromFirestore: Profil.fromFirestore,
+        toFirestore: (Profil profil, _) => profil.toFirestore(),
+      );
+      final docSnap = await ref.get();
+      final profil = docSnap.data(); // Convert to City object
+      return profil;
+    }
+  }
 }
-
