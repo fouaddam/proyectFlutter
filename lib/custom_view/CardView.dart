@@ -1,11 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:proyectoflutter/sigelton/DataHolder.dart';
 
 import '../fb_objects/RoomsPhotoCard.dart';
 
 class CardView extends StatelessWidget{
 
   final List<Room2> nombre;
+
+  void NaveTo(BuildContext context,int index){
+    NavigatorState navigatorState=Navigator.of(context);
+
+    switch(index){
+      case 0:navigatorState.pushNamed('/RoomsChat');break;
+    }
+  }
 
   const CardView({super.key, required this.nombre});
   @override
@@ -28,16 +37,22 @@ class CardView extends StatelessWidget{
             fit:BoxFit.cover
             ),
                 ),
-              child: Card(
-                color: Colors.black12,
-                child: Center(child: Text(nombre[index].name!,
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.orange,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(8),
+                onTap: (){
+                  NaveTo(context,index);
+                },
+                child: Card(
+                  color: Colors.black12,
+                  child: Center(child: Text(nombre[index].name!,
+                    style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.orange,
+
+                    ),
+                  )),
 
                 ),
-                )),
-
               ),
             );
 

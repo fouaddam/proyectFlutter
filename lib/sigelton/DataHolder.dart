@@ -11,12 +11,13 @@ import '../fb_objects/TextChat.dart';
 import '../firebase/FBAdmin.dart';
 
 class DataHolder{
-  static final DataHolder _dataHolder=new DataHolder._iternal();
+  static final DataHolder _dataHolder = new DataHolder._internal();
 
     String COLLECTION_ROOMS="/rooms/";
     String COLLECTION_TEXTS="/Texts";
     String COLLECTION_PROFILE="/Profiles";
     String? MYUID=FirebaseAuth.instance.currentUser?.uid;
+    final String ROOMSCHAT='/RoomsChat';
 
 
     FBAdmin fbAdmin=new FBAdmin();
@@ -27,13 +28,13 @@ class DataHolder{
     List<Room2>?listaRooms2=[];
 
 
-          DataHolder._iternal(){
 
-          }
 
-          factory DataHolder(){
-            return _dataHolder;
-          }
+  factory DataHolder(){
+    return _dataHolder;
+  }
+
+  DataHolder._internal();
 
            void descargarMIPerfil() async {
              profil= fbAdmin.Descargar_Perfil(MYUID) as Profil;

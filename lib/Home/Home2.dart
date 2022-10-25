@@ -20,7 +20,7 @@ class _Home2State extends State<Home2> {
 
   void Descargar_Room2() async {
 
-    final ref = db.collection("/rooms").where("members", isGreaterThan: 50)
+    final ref = db.collection("/rooms")
        .withConverter(
       fromFirestore: Room2.fromFirestore,
       toFirestore: (Room2 room2, _) => room2.toFirestore(),
@@ -29,23 +29,21 @@ class _Home2State extends State<Home2> {
     final docs= docSnap.docs;
 
       for(int i=0;i<docs.length;i++){
-        nombre.add(docs[i].data());
+         nombre.add(docs[i].data());
       }
     }
 
     void actualizarLista() async {
-    @override
-      setState(){
 
-        }
       }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Descargar_Room2();
-
+    setState(() {
+      Descargar_Room2();
+    });
 
   }
 
