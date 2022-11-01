@@ -1,14 +1,13 @@
 
-import 'dart:ui';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:proyectoflutter/fb_objects/Profil.dart';
 import 'package:proyectoflutter/fb_objects/Room.dart';
 
 import '../fb_objects/RoomsPhotoCard.dart';
 import '../fb_objects/TextChat.dart';
-import '../firebase/FBAdmin.dart';
+import '../platform/platformAdmin.dart';
 
 class DataHolder{
   static final DataHolder _dataHolder = new DataHolder._internal();
@@ -31,11 +30,18 @@ class DataHolder{
 
 
 
+
+
   factory DataHolder(){
     return _dataHolder;
   }
 
-  DataHolder._internal();
+
+  late PlatformAdmin platfomAdmin;
+
+  DataHolder._internal(){
+    platfomAdmin=PlatformAdmin();
+  }
 
 
   

@@ -2,7 +2,6 @@
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:proyectoflutter/custom_view/RF_Text.dart';
 import 'package:proyectoflutter/sigelton/DataHolder.dart';

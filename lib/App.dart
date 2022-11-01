@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:proyectoflutter/Home/SplashView.dart';
 import 'package:proyectoflutter/Home/onBoardingView.dart';
 import 'package:proyectoflutter/Home/roomsView.dart';
+import 'package:proyectoflutter/sigelton/DataHolder.dart';
 
 import 'Card_view/RoomChatCrid.dart';
 import 'Home/Home.dart';
@@ -26,28 +27,35 @@ class _AppState extends State<App> {
 
 FirebaseFirestore db=FirebaseFirestore.instance;
 
-
+    late MaterialApp materialApp;
   @override
   Widget build(BuildContext context) {
+
+
+
+
+
+      materialApp=MaterialApp(
+        initialRoute:'/Login',
+        routes: {
+          '/Login': (context) => Login_View(),
+          '/Register': (context) => Register_View(),
+          '/Home': (context) => Home(),
+          '/onBoarding': (context) => onBoardingView(),
+          '/rooms': (context) => roomView(),
+          '/Splash': (context) => SplashView(),
+          '/Home2': (context) => Home2(),
+          '/RoomsChat': (context) => RoomsChat(),
+          '/GridRooms': (context) => RoomChatCrid(),
+
+        },
+
+      );
+
+
+
     // TODO: implement build
-    return MaterialApp(
-      initialRoute:'/Login',
-      routes:{
-        '/Login':(context)=>Login_View(),
-        '/Register':(context)=>Register_View(),
-        '/Home':(context)=>Home(),
-        '/onBoarding':(context)=>onBoardingView(),
-        '/rooms':(context)=>roomView(),
-        '/Splash':(context)=>SplashView(),
-        '/Home2':(context)=>Home2(),
-        '/RoomsChat':(context)=>RoomsChat(),
-        '/GridRooms':(context)=>RoomChatCrid(),
-
-
-      },
-
-
-    );
+    return materialApp;
   }
 }
 

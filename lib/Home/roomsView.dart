@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:proyectoflutter/sigelton/DataHolder.dart';
 
 import '../custom_view/list_view.dart';
@@ -17,7 +16,7 @@ class roomView extends StatefulWidget{
 class _roomViewState extends State<roomView>   {
 
 
- final FirebaseStorage firebaseStorage=FirebaseStorage.instance;
+
  final  FirebaseFirestore firebaseFirestore=FirebaseFirestore.instance;
   List<QueryDocumentSnapshot<Room>> lista=[];
  List<Room>lista2=[];
