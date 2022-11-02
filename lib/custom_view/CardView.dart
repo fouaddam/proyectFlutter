@@ -48,7 +48,6 @@ class CardView extends StatelessWidget{
                     style: TextStyle(
                       fontSize: 25,
                       color: Colors.orange,
-
                     ),
                   )),
 
