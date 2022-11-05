@@ -10,7 +10,6 @@ class PlatformAdmin {
       late double dSCREEN_HEIGTH;
       late BuildContext context;
 
-
       PlatformAdmin();
 
       void initDisplayData(BuildContext context){
