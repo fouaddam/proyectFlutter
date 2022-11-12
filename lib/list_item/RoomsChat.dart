@@ -2,10 +2,14 @@
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:proyectoflutter/chat_bubbles/Chat_trail.dart';
 import 'package:proyectoflutter/custom_view/RF_Text.dart';
 import 'package:proyectoflutter/sigelton/DataHolder.dart';
 
+import '../chat_bubbles/Recieved_message_Bubble.dart';
+import '../chat_bubbles/Send_message_bubble.dart';
 import '../custom_view/list_view.dart';
 import '../fb_objects/TextChat.dart';
 
@@ -101,16 +105,21 @@ class _RoomsChatState extends State<RoomsChat> {
 
         child:Stack(
           children: [
-            ListView.separated(
+            ListView.builder(
 
               padding: const EdgeInsets.all(10),
               itemCount: listatexts.length,
               itemBuilder: (BuildContext context, int index) {
-                return  RoomItem(name:listatexts[index].data().text!,onClick: listItemShortClick,index: index,);
+                if(listatexts[index].data().author==FirebaseAuth.instance.currentUser?.uid){
+                  return  SendMessageBubble(sMessage:listatexts[index].data().text!);
+                }else{
+                  return RecieverMessageBubble(sMessage:listatexts[index].data().text!);
+                }
+
               },
-              separatorBuilder: (BuildContext context, int index) => const Divider(),
+
             ),
-            SizedBox(height: 300,),
+            SizedBox(height: 10,),
 
             inputText,
             FloatingActionButton.extended(
