@@ -1,6 +1,7 @@
 
 
 
+import 'package:chat_bubbles/chat_bubbles.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -111,7 +112,15 @@ class _RoomsChatState extends State<RoomsChat> {
               itemCount: listatexts.length,
               itemBuilder: (BuildContext context, int index) {
                 if(listatexts[index].data().author==FirebaseAuth.instance.currentUser?.uid){
-                  return  SendMessageBubble(sMessage:listatexts[index].data().text!);
+                  return  BubbleSpecialThree(
+                        text: listatexts[index].data().text!,
+                        color: const Color(0xFF1B97F3),
+                        tail: true,
+                        textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16
+                )
+                  );
                 }else{
                   return RecieverMessageBubble(sMessage:listatexts[index].data().text!);
                 }
@@ -121,14 +130,14 @@ class _RoomsChatState extends State<RoomsChat> {
             ),
             SizedBox(height: 10,),
 
-            inputText,
-            FloatingActionButton.extended(
-              onPressed: PressedPressed,
-                  label: const Text('Send'),
-                  icon: const Icon(Icons.thumb_up),
-              backgroundColor: Colors.pink,
-            ),
 
+                    inputText,
+                    FloatingActionButton.extended(
+                      onPressed: PressedPressed,
+                      label: const Text('Send'),
+                      icon: const Icon(Icons.thumb_up),
+                      backgroundColor: Colors.pink,
+                    ),
 
           ],
         )
