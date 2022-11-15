@@ -1,5 +1,7 @@
 
 
+
+
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:proyectoflutter/fb_objects/Profil.dart';
@@ -10,13 +12,15 @@ import '../fb_objects/TextChat.dart';
 import '../platform/platformAdmin.dart';
 
 class DataHolder{
+
   static final DataHolder _dataHolder = new DataHolder._internal();
 
     String COLLECTION_ROOMS="/rooms/";
     String COLLECTION_TEXTS="/Texts";
     String COLLECTION_PROFILE="/Profiles";
-    String? MYUID=FirebaseAuth.instance.currentUser?.uid;
     final String ROOMSCHAT='/RoomsChat';
+
+  String? MYUID=FirebaseAuth.instance.currentUser?.uid;
 
 
 
@@ -28,11 +32,6 @@ class DataHolder{
     List<Room2>?listaRooms2=[];
 
 
-
-
-
-
-
   factory DataHolder(){
     return _dataHolder;
   }
@@ -40,8 +39,12 @@ class DataHolder{
 
   late PlatformAdmin platfomAdmin;
 
+  late List<String>lista=[] ;
+
   DataHolder._internal(){
     platfomAdmin=PlatformAdmin();
+
+
   }
 
 

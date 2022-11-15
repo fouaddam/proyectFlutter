@@ -42,9 +42,6 @@ dependencies:
   firebase_core: ^2.1.0
 
 
-
-
-
   eurekalib:
    path: ../eurekalib
 

@@ -29,6 +29,7 @@ class _RoomsChatState extends State<RoomsChat> {
 
 
   void PressedPressed(){
+
     final docRef = db.collection(Path);
     ChatText textChat= ChatText(text:inputText.getText(),author: DataHolder().profil.id,time: Timestamp.now());
     docRef.add(textChat.toFirestore());
