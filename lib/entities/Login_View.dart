@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:proyectoflutter/fb_objects/Profil.dart';
 
@@ -54,6 +55,12 @@ class _Login_ViewState extends State<Login_View> {
   
   @override
   Widget build(BuildContext context) {
+
+
+     double Screenwidth=MediaQuery.of(context).size.width;
+     double ScreenHeigth=MediaQuery.of(context).size.width;
+
+    print(MediaQuery.of(context).size.height.toString());
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
@@ -94,11 +101,11 @@ class _Login_ViewState extends State<Login_View> {
                             fontSize: 30,
                           ),
                         ),
-                        SizedBox(height: 20,),
+                        SizedBox(height: ScreenHeigth/30,),
                         inputEmail,
-                        SizedBox(height: 20,),
+                        SizedBox(height: ScreenHeigth/30,),
                         inputPassword,
-                        SizedBox(height: 10,),
+                        SizedBox(height: ScreenHeigth/30,),
                         OutlinedButton(
                           style: OutlinedButton.styleFrom(
                             backgroundColor: Colors.purple,
