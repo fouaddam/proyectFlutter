@@ -38,6 +38,7 @@ FirebaseFirestore db=FirebaseFirestore.instance;
       materialApp=MaterialApp(
         theme: ThemeData(
           brightness: Brightness.dark,
+            fontFamily: 'Georgia'
         ),
         initialRoute:'/Login',
         routes: {
